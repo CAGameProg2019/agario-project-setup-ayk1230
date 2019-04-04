@@ -5,7 +5,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let pos = new Vector(60, 60);
-let vel = new Vector(.5,.2);
+let vel = new Vector(1,1);
 
 function init() {
     pos.print();
