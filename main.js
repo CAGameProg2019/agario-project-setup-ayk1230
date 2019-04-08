@@ -4,6 +4,9 @@ let c = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let mpos;
+
+let player;
 let foods = [];
 
 let colors = [
@@ -11,7 +14,11 @@ let colors = [
     "#F67280",
     "#C06C84",
     "#6C5B7B",
-    "#355C7D"
+    "#355C7D",
+    "#647c72",
+    "#faf2f4",
+    "#cce1e9"
+
 ];
 
 function randomColor(){
@@ -20,11 +27,15 @@ function randomColor(){
 }
 function init() {
 
+    mpos = new Vector(canvas.width/2, canvas.height/2);
+
+    player = new Player(canvas.width/2, canvas.height/2, 25, randomColor());
+
     for(var i =0; i<100; i++){
         let x = Math.random()* canvas.width;
         let y = Math.random()* canvas.height;
         let color = randomColor();
-        let food = new Food(x, y, 15, color);
+        let food = new Food(x, y, 10, color);
         foods.push(food);
     }
 
@@ -38,10 +49,20 @@ function update() {
     foods[i].draw(c);
     }
 
+    player.x = mpos.x;
+    player.y = mpos.y;
+    player.draw(c);
 
     requestAnimationFrame(update);
 }
 
-window.addEventListener('load', function(event) {
+window.addEventListener('load', function() {
     init();
+
+    window.addEventListener('mousemove', function(event){
+        mpos.x = event.clientX - canvas.offsetLeft;
+        mpos.y = event.clientY - canvas.offsetTop;
+        mpos.print();
+
+    });
 });
