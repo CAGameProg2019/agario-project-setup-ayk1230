@@ -24,7 +24,7 @@ function init() {
         let x = Math.random()* canvas.width;
         let y = Math.random()* canvas.height;
         let color = randomColor();
-        let food = new Food(x, y, 20, color);
+        let food = new Food(x, y, 15, color);
         foods.push(food);
     }
 
