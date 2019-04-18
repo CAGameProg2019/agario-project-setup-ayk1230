@@ -24,6 +24,12 @@ class Vector {
         return this;
     }
 
+    dist(vec){
+        let x = vec.x - this.x;
+        let y = vec.y - this.y;
+        return Math.sqrt(x*x + y*y);
+    }
+
     toString() {
         return '<'+this.x+', '+this.y+'>';
     }
