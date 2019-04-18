@@ -32,14 +32,17 @@ function generateFood(){
     let x = Math.random()* canvas.width;
     let y = Math.random()* canvas.height;
     let color = randomColor();
-    let food = new Food(x, y, 10, color);
+    let name = " ";
+    let food = new Food(x, y, 10, color, name);
+
     foods.push(food);
 }
 function init() {
 
     mpos = new Vector(canvas.width/2, canvas.height/2);
 
-    player = new Player(canvas.width/2, canvas.height/2, 25, randomColor());
+    var inputName = prompt("What is your name?");
+    player = new Player(canvas.width/2, canvas.height/2, 25, "blue", inputName);
 
     for(var i =0; i< FOOD_COUNT; i++){
         generateFood();
@@ -58,7 +61,7 @@ function update() {
         } else {
         // foods[i].x = Math.random()* canvas.width;
         // foods[i].y = Math.random()* canvas.height;
-            player.addMass(foods[i].mass);s
+            player.addMass(foods[i].mass);
             foods.splice(i, 1);
             i--;
         }
