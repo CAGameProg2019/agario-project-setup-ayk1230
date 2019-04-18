@@ -9,6 +9,8 @@ let mpos;
 let player;
 let foods = [];
 
+const FOOD_COUNT = 100;
+
 let colors = [
     "#F8B195",
     "#F67280",
@@ -25,18 +27,22 @@ function randomColor(){
     let index = Math.floor(Math.random()*colors.length);
     return colors[index];
 }
+
+function generateFood(){
+    let x = Math.random()* canvas.width;
+    let y = Math.random()* canvas.height;
+    let color = randomColor();
+    let food = new Food(x, y, 10, color);
+    foods.push(food);
+}
 function init() {
 
     mpos = new Vector(canvas.width/2, canvas.height/2);
 
     player = new Player(canvas.width/2, canvas.height/2, 25, randomColor());
 
-    for(var i =0; i<100; i++){
-        let x = Math.random()* canvas.width;
-        let y = Math.random()* canvas.height;
-        let color = randomColor();
-        let food = new Food(x, y, 10, color);
-        foods.push(food);
+    for(var i =0; i< FOOD_COUNT; i++){
+        generateFood();
     }
 
     update();
@@ -45,8 +51,21 @@ function init() {
 function update() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    for(var i=0; i<100; i++){
-    foods[i].draw(c);
+    for(var i=0; i< foods.length; i++){
+        let eaten = player.intersects(foods[i]);
+        if(!eaten){
+            foods[i].draw(c);
+        } else {
+        // foods[i].x = Math.random()* canvas.width;
+        // foods[i].y = Math.random()* canvas.height;
+            player.addMass(foods[i].mass);s
+            foods.splice(i, 1);
+            i--;
+        }
+    }
+
+    while(foods.length < FOOD_COUNT){
+        generateFood();
     }
 
     player.x = mpos.x;
