@@ -1,7 +1,8 @@
 class Player extends Food{
 
-    constructor(x, y, radius, color) {
-        super(x, y, radius, color);
+    constructor(x, y, radius, color, name) {
+        super(x, y, radius, color, name);
+
     }
 
 }
