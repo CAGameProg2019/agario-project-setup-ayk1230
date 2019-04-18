@@ -15,7 +15,8 @@ class Food extends Vector{
         c.fill();
         c.font = "100 px Arial";
         c.fillStyle = "white";
-        c.fillText(this.name, this.x-20, this.y+3);
+        c.textAlign = "center";
+        c.fillText(this.name, this.x, this.y);
     }
 
     intersects(food){
