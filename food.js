@@ -1,9 +1,10 @@
 class Food extends Vector{
 
-    constructor(x, y, radius, color) {
+    constructor(x, y, radius, color, name) {
         super(x,y);
         this.radius = radius;
         this.color = color;
+        this.name = name;
     }
 
     draw(c){
@@ -12,6 +13,9 @@ class Food extends Vector{
         c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         c.closePath();
         c.fill();
+        c.font = "100 px Arial";
+        c.fillStyle = "white";
+        c.fillText(this.name, this.x-20, this.y+3);
     }
 
     intersects(food){
