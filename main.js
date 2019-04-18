@@ -23,6 +23,17 @@ let colors = [
 
 ];
 
+let strokeColors = [
+    "#F8B195",
+    "#F67280",
+    "#C06C84",
+    "#6C5B7B",
+    "#355C7D",
+    "#647c72",
+    "#faf2f4",
+    "#cce1e9"
+]
+
 function randomColor(){
     let index = Math.floor(Math.random()*colors.length);
     return colors[index];
@@ -42,7 +53,10 @@ function init() {
     mpos = new Vector(canvas.width/2, canvas.height/2);
 
     var inputName = prompt("What is your name?");
-    player = new Player(canvas.width/2, canvas.height/2, 25, "blue", inputName);
+
+    let color = randomColor();
+    let stroke = strokeColors[colors.indexOf(color)];
+    player = new Player(canvas.width/2, canvas.height/2, 25, color, stroke, inputName);
 
     for(var i =0; i< FOOD_COUNT; i++){
         generateFood();
