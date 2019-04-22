@@ -24,7 +24,7 @@ let colors = [
 ];
 
 let strokeColors = [
-    "#F8B195",
+    "#F8B197",
     "#F67280",
     "#C06C84",
     "#6C5B7B",
@@ -56,7 +56,7 @@ function init() {
 
     let color = randomColor();
     let stroke = strokeColors[colors.indexOf(color)];
-    player = new Player(canvas.width/2, canvas.height/2, 25, color, stroke, inputName);
+    player = new Player(canvas.width/2, canvas.height/2, 25, color, stroke, inputName, 10);
 
     for(var i =0; i< FOOD_COUNT; i++){
         generateFood();
@@ -67,6 +67,9 @@ function init() {
 
 function update() {
     c.clearRect(0, 0, canvas.width, canvas.height);
+
+    player.update(mpos);
+
 
     for(var i=0; i< foods.length; i++){
         let eaten = player.intersects(foods[i]);
@@ -85,8 +88,6 @@ function update() {
         generateFood();
     }
 
-    player.x = mpos.x;
-    player.y = mpos.y;
     player.draw(c);
 
     requestAnimationFrame(update);
