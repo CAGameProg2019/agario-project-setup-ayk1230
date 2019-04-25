@@ -6,8 +6,12 @@ canvas.height = window.innerHeight;
 
 let mpos;
 
+
 let player;
 let foods = [];
+var keyPress = {
+    f: false
+}
 
 const FOOD_COUNT = 100;
 
@@ -48,6 +52,7 @@ function generateFood(){
 
     foods.push(food);
 }
+
 function init() {
 
     mpos = new Vector(canvas.width/2, canvas.height/2);
@@ -90,6 +95,25 @@ function update() {
 
     player.draw(c);
 
+    if(keyPress.f){
+        let feedVec = new Vector (player.x, player.y);
+        let direction = new Vector (player.x + 100,player.y + 100);
+        let feedFood = new Food(player.x + 100, player.y + 100, 10, player.color, " ");
+
+        let dist = feedVec.magnitude();
+        if(dist = 0){
+            feedVec.toDirVec();
+
+            feedVec.scale(10);
+            if(dist > this.radius*1.2){
+                vel.scale(dist*.3/this.radius);
+            }
+
+            this.addVector(vel);
+        }
+        feedFood.draw(c)
+    }
+
     requestAnimationFrame(update);
 }
 
@@ -102,4 +126,16 @@ window.addEventListener('load', function() {
         mpos.print();
 
     });
+
+    window.addEventListener('keydown', function(event){
+        if(event.key === 'f'){
+            keyPress.f = true;
+        }
+    });
+
+    window.addEventListener('keyup', function(event){
+        if(event.key === 'f'){
+            keyPress.f = false;
+        }
+    })
 });
