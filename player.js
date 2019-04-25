@@ -25,6 +25,7 @@ class Player extends Food{
 
     }
 
+
     draw(c){
         c.lineWidth = this.radius * .075;
         c.strokeStyle = this.stroke;
