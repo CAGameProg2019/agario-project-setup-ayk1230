@@ -13,10 +13,6 @@ class Food extends Vector{
         c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         c.closePath();
         c.fill();
-        c.font = "100 px Arial";
-        c.fillStyle = "white";
-        c.textAlign = "center";
-        c.fillText(this.name, this.x, this.y);
     }
 
     intersects(food){
