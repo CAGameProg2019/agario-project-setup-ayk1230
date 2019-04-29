@@ -139,13 +139,12 @@ function update() {
     c.fillStyle = "black";
     c.fillText("count: "+ count, 100, 50);
 
-    if(count = 400){
+    if(count == '400'){
         alert("You reached 400! Good Job. Bye.");
-        count = 0;
         "location.reload(true)"
     }
 
-    
+
     requestAnimationFrame(update);
 }
 
