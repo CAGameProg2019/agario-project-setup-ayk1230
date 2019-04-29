@@ -68,7 +68,7 @@ function init() {
 
     mpos = new Vector(canvas.width/2, canvas.height/2);
 
-    var inputName = prompt("What is your name? (c:change color, b: size x1.5, e: feed, play till 400!)");
+    var inputName = prompt("What is your name? (c:change color, b: size x1.5, e: draw, play till 400!)");
 
     let color = randomColor();
 
