@@ -8,7 +8,7 @@ class Player extends Food{
     }
 
     update(mouse){
-        let vel = new Vector (mouse.x, mouse.y);
+        var vel = new Vector (mouse.x, mouse.y);
         vel.subVector(this);
 
         let dist = vel.magnitude();
