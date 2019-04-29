@@ -8,6 +8,7 @@ let mpos;
 
 
 let player;
+var count = 0;
 let foods = [];
 var keyPress = {
     f: false
@@ -60,6 +61,7 @@ function init() {
     var inputName = prompt("What is your name?");
 
     let color = randomColor();
+
     let stroke = strokeColors[colors.indexOf(color)];
     player = new Player(canvas.width/2, canvas.height/2, 25, color, stroke, inputName, 10);
 
@@ -73,6 +75,7 @@ function init() {
 function update() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
+
     player.update(mpos);
 
 
@@ -84,6 +87,7 @@ function update() {
         // foods[i].x = Math.random()* canvas.width;
         // foods[i].y = Math.random()* canvas.height;
             player.addMass(foods[i].mass);
+            count ++;
             foods.splice(i, 1);
             i--;
         }
@@ -95,24 +99,26 @@ function update() {
 
     player.draw(c);
 
-    if(keyPress.f){
-        let feedVec = new Vector (player.x, player.y);
-        let direction = new Vector (player.x + 100,player.y + 100);
-        let feedFood = new Food(player.x + 100, player.y + 100, 10, player.color, " ");
+    if(keyPress.e){
+        let feedItem = new Food (player.x, player.y, 10, player.color, " ");
+        let feedSpeed = 100;
 
-        let dist = feedVec.magnitude();
-        if(dist = 0){
-            feedVec.toDirVec();
-
-            feedVec.scale(10);
-            if(dist > this.radius*1.2){
-                vel.scale(dist*.3/this.radius);
-            }
-
-            this.addVector(vel);
+        if(feedSpeed>0){
+            feedItem.x += feedSpeed;
+            feedItem.y += feedSpeed;
+            feedSpeed -= 10;
+            feedItem.draw(c);
+        }else{
+            feedItem.draw(c);
         }
-        feedFood.draw(c)
+
+
     }
+    c.lineWidth = 15;
+    c.font = "30px Arial";
+    c.fillStyle = "black";
+    c.fillText("count: "+ count, 100, 50);
+
 
     requestAnimationFrame(update);
 }
@@ -128,14 +134,14 @@ window.addEventListener('load', function() {
     });
 
     window.addEventListener('keydown', function(event){
-        if(event.key === 'f'){
-            keyPress.f = true;
+        if(event.key === 'e'){
+            keyPress.e = true;
         }
     });
 
     window.addEventListener('keyup', function(event){
-        if(event.key === 'f'){
-            keyPress.f = false;
+        if(event.key === 'e'){
+            keyPress.e = false;
         }
     })
 });
