@@ -141,7 +141,7 @@ function update() {
     c.fillStyle = "black";
     c.fillText("count: "+ count, 100, 50);
 
-    if(count = 400){
+    if(count >= 400){
         alert("You reached 400! Good Job. Bye.");
         c.location.reload();
     }
