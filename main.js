@@ -121,11 +121,10 @@ function update() {
             feedItem.x += feedSpeed;
             feedItem.y += feedSpeed;
             feedSpeed -= 10;
-            foods.push();
+            foods.push(feedItem);
         }else{
-            foods.push();
+            foods.push(feedItem);
         }
-
     }
 
     if(keyPress.c){
