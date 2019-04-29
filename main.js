@@ -105,6 +105,8 @@ function update() {
         }
     }
 
+
+
     while(foods.length < FOOD_COUNT + 15){
         generateFood();
     }
@@ -141,7 +143,9 @@ function update() {
 
     if(count = 400){
         alert("You reached 400! Good Job. Bye.");
+        c.location.reload();
     }
+
 
     requestAnimationFrame(update);
 }
