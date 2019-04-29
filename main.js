@@ -68,7 +68,7 @@ function init() {
 
     mpos = new Vector(canvas.width/2, canvas.height/2);
 
-    var inputName = prompt("What is your name?");
+    var inputName = prompt("What is your name? (c:change color, b: size x1.5, e: feed, play till 400!)");
 
     let color = randomColor();
 
@@ -141,8 +141,12 @@ function update() {
     c.fillStyle = "black";
     c.fillText("count: "+ count, 100, 50);
 
-    if(count >= 400){
-        alert("You reached 400! Good Job. Bye.");
+    if(count == 400){
+        alert("Wow, impressive. Quite precise, I see.");
+        c.location.reload();
+    }
+    if(count > 400){
+        alert("You went beyond 400!Bye.");
         c.location.reload();
     }
 
