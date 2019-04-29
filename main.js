@@ -54,6 +54,16 @@ function generateFood(){
     foods.push(food);
 }
 
+function generateItem(){
+    let x = Math.random()* canvas.width;
+    let y = Math.random()* canvas.height;
+    let color = 'yellow'
+    let name = " ";
+    let food = new Food(x, y, 15, color, name);
+
+    foods.push(food);
+}
+
 function init() {
 
     mpos = new Vector(canvas.width/2, canvas.height/2);
@@ -68,7 +78,9 @@ function init() {
     for(var i =0; i< FOOD_COUNT; i++){
         generateFood();
     }
-
+    for(var i = 0; i <15; i++){
+        generateItem();
+    }
     update();
 }
 
@@ -93,7 +105,7 @@ function update() {
         }
     }
 
-    while(foods.length < FOOD_COUNT){
+    while(foods.length < FOOD_COUNT + 15){
         generateFood();
     }
 
@@ -112,14 +124,28 @@ function update() {
             feedItem.draw(c);
         }
 
-
     }
+
+    if(keyPress.c){
+        player.color = randomColor();
+    }
+
+    if(keyPress.b){
+        player.radius *= 1.5;
+    }
+
     c.lineWidth = 15;
     c.font = "30px Arial";
     c.fillStyle = "black";
     c.fillText("count: "+ count, 100, 50);
 
+    if(count = 400){
+        alert("You reached 400! Good Job. Bye.");
+        count = 0;
+        "location.reload(true)"
+    }
 
+    
     requestAnimationFrame(update);
 }
 
@@ -137,11 +163,25 @@ window.addEventListener('load', function() {
         if(event.key === 'e'){
             keyPress.e = true;
         }
+
+        if(event.key === 'c'){
+            keyPress.c = true;
+        }
+        if(event.key === 'b'){
+            keyPress.b = true;
+        }
     });
 
     window.addEventListener('keyup', function(event){
         if(event.key === 'e'){
             keyPress.e = false;
+        }
+
+        if(event.key === 'c'){
+            keyPress.c = false;
+        }
+        if(event.key === 'b'){
+            keyPress.b = false;
         }
     })
 });
